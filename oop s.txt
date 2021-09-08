@@ -1,0 +1,52 @@
+#1
+def isLeapYear(year):
+  if year%400 == 0:
+    return True
+  elif year%4 == 0 and year%100 !=0:
+    return True
+  else:
+    return False
+years = [200, 480, 2800, 3000]
+for year in years:
+  if isLeapYear(year) == True:
+    print("{0} is a leap year".format(year))
+  else:
+    print("{0} is not a leap year".format(year))
+#3
+def isFashionablyLate(guests, guest):
+  mid = int(len(guests)/2) - 1    #As mid represents index, not position, we subtract 1
+  k = 0
+  guestIndex = None
+  for i in guests:
+    if i == guest:
+      guestIndex = k
+      break
+    k+=1
+  if guestIndex != None:
+    if guestIndex > mid and guestIndex != len(guests)-1:
+      print("{0} is fashionably late.".format(guest))
+    else:
+      print("{0} isn't fashionably late.".format(guest))
+  else:
+    print("Name is not present in the guest list.") 
+
+Arrivals = ['Hardik', 'Rahul', 'Virat', 'Rishabh', 'Mahi', 'Rohit', 'Rahane']
+isFashionablyLate(Arrivals, 'Virat')
+isFashionablyLate(Arrivals, 'Rishabh')
+isFashionablyLate(Arrivals, 'Rahane')
+#4
+import re
+def filterDocs(articles, term):
+  newList = []
+  for i in articles:
+    cleanText = re.sub(r'[^A-Za-z0-9 ]+', '', i)
+    if cleanText.lower().count(term.lower()) > 0:
+      words = cleanText.split()
+      words = [x.lower() for x in words]
+      if term.lower() in words:
+        newList.append(i)
+  return newList
+
+doc_list = ['The Learning Python Challenge Rohit.', 'They bought a car.', "Rohit's adventures", "python libraries", "bangalore"]
+print(filterDocs(doc_list, 'Rohit'))
+print(filterDocs(doc_list, 'Python'))
